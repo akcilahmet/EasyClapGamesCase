@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a47a30a6eee2440be754999bc75458, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
-  score: 0
+  score: 30
   characterColor: {r: 0.9339623, g: 0.10748647, b: 0.039649326, a: 1}

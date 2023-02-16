@@ -2604,7 +2604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701169651}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 10.47, z: -47.9}
+  m_LocalPosition: {x: 0, y: 10.97, z: -47.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1846157028}
@@ -4185,7 +4185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 9, z: -17}
+  m_FollowOffset: {x: 0, y: 9.5, z: -17}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -4468,7 +4468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119472526}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 3.6, y: 10.47, z: -47.9}
+  m_LocalPosition: {x: 2.8, y: 10.97, z: -47.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1080013430}
@@ -5088,7 +5088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211555881}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 10.47, z: -47.9}
+  m_LocalPosition: {x: 0, y: 10.97, z: -47.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6425,13 +6425,17 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 387728010}
+    - target: {fileID: 3135897207952892724, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 3135897207952892725, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3135897207952892725, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.6
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 3135897207952892725, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7308,7 +7312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 9, z: -17}
+  m_FollowOffset: {x: 0, y: 9.5, z: -17}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -8230,6 +8234,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 387728010}
+    - target: {fileID: 3135897207952892724, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 3135897207952892725, guid: b10869d9d891afb4ea5078d6dd23cce3, type: 3}
       propertyPath: m_RootOrder
       value: 5
