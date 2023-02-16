@@ -6,8 +6,12 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class CollectManager : MonoBehaviour
+public class CollectManager : CharacterType
 {
+    [SerializeField] private PlayerType type;
+    [SerializeField] private CharacterSetup characterSetup;
+  
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("collect"))
@@ -15,6 +19,8 @@ public class CollectManager : MonoBehaviour
             CollectiblesType collectiblesType = other.gameObject.GetComponent<CollectiblesType>();
             if (collectiblesType.type == CollectiblesType.CollectType.cube)
             {
+                ScoreUpdate(collectiblesType.score);
+                
                
                 Destroy(other.gameObject);
 
@@ -28,6 +34,10 @@ public class CollectManager : MonoBehaviour
             }
             if (collectiblesType.type == CollectiblesType.CollectType.cylinder)
             {
+               
+                ScoreUpdate(collectiblesType.score);
+              
+                
                 ScaleDecrease(collectiblesType.scale);
                 Destroy(other.gameObject);
             }
@@ -36,15 +46,35 @@ public class CollectManager : MonoBehaviour
 
     void ScaleAdd(float addScale)
     {
-        transform.DOScale(transform.localScale + new Vector3(addScale, addScale, addScale), .2f).SetEase(Ease.OutBack);
+        transform.DOScale(transform.localScale + new Vector3(addScale, addScale, addScale), .15f).SetEase(Ease.OutBack);
     }
 
     void ScaleDecrease(float decreaseScale)
     {
-        transform.DOScale(transform.localScale + new Vector3(-decreaseScale, -decreaseScale, -decreaseScale), .2f).SetEase(Ease.OutBack);
+        transform.DOScale(transform.localScale + new Vector3(-decreaseScale, -decreaseScale, -decreaseScale), .15f).SetEase(Ease.OutBack);
 
     }
-    
+
+    void ScoreUpdate(int addScore)
+    {
+        CanvasScoreUpdate(addScore);
+        characterSetup.GetCharSO().score += addScore;
+      
+    } 
+    void CanvasScoreUpdate(int addScore)
+    {
+        if (type == PlayerType.playerOne)
+        {
+            CanvasController.Instance.PlayerOneTextUpdate( characterSetup.GetCharSO().score,addScore);
+            
+        }
+
+        if (type == PlayerType.playerTwo)
+        {
+            CanvasController.Instance.PlayerTwoTextUpdate( characterSetup.GetCharSO().score,addScore);
+            
+        }
+    }
     
   
 }
