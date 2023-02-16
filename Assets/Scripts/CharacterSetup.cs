@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSetup : CharacterType
+public class CharacterSetup : CharacterProperty
 {
     [SerializeField] private PlayerType type;
     [SerializeField] private CharSO charSo;

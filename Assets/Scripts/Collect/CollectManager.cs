@@ -6,7 +6,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class CollectManager : CharacterType
+public class CollectManager : CharacterProperty
 {
     [SerializeField] private PlayerType type;
     [SerializeField] private CharacterSetup characterSetup;
