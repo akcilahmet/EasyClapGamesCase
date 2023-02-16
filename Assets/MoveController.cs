@@ -13,8 +13,7 @@ public class MoveController : MonoBehaviour
     [Header("Rot")] [Space(5)]
     public float turnSmoothTime = .1f;
     private float turnSmoothVelocity=5;
-
-
+    
     [Header("Joystick")] [Space(5)] 
     [SerializeField] private DynamicJoystick joystick;
 
@@ -27,7 +26,7 @@ public class MoveController : MonoBehaviour
 
     private void Update()
     {
-        Rotation(DirectionCalculate());
+        Rotation(Direction());
     }
 
     private void FixedUpdate()
@@ -49,8 +48,7 @@ public class MoveController : MonoBehaviour
     }
 
     #endregion
-
-
+    
     #region Move
 
     void Move()
@@ -58,10 +56,10 @@ public class MoveController : MonoBehaviour
         if (DirectionMagnitude() >= .1f)
         {
 
-            rb.velocity = DirectionCalculate() * MoveSmoothSpeed()*Time.deltaTime;
+            rb.velocity = Direction() * MoveSmoothSpeed()*Time.deltaTime;
 
         }
-        if (DirectionCalculate().magnitude < .1f)
+        if (DirectionMagnitude() < .1f)
         {
             ResetVelocity();
         }
@@ -70,43 +68,42 @@ public class MoveController : MonoBehaviour
 
     #endregion
     
+    #region Calculator
 
-    
-    
-    
+    float DirectionMagnitude()
+    {
+        return MoveCalculator.DirectionMagnitude(joystick);
+    }
+
+    Vector3 Direction()
+    {
+        return MoveCalculator.DirectionCalculate(joystick);
+    }
+
+    #endregion
+
+    #region Reset
+
     void ResetVelocity()
     {
         rb.velocity = Vector3.zero;
     }
-    
+
+    #endregion
+
+    #region SmoothSpeed
+
     float MoveSmoothSpeed()
     {
-        moveSpeed = Calculate.ConvertToFloat(0, maxMoveSpeed, 0, 1, DirectionMagnitude());
+        moveSpeed = MoveCalculator.ConvertToFloat(0, maxMoveSpeed, 0, 1, DirectionMagnitude());
         
         
         moveSpeed = Mathf.Clamp(moveSpeed, minMoveSpeed, maxMoveSpeed);
         return moveSpeed;
     }
 
+
+    #endregion
     
-    public Vector3 DirectionCalculate()
-    {
-        float horizontal = joystick.Horizontal;
-        float vertical = joystick.Vertical;
-       
-        Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
-        return direction;
-        
-        
-    } 
-    public float DirectionMagnitude()
-    {
-        float horizontal = joystick.Horizontal;
-        float vertical = joystick.Vertical;
-       
-        float direction = new Vector3(horizontal, 0, vertical).magnitude;
-        return direction;
-        
-    }
 
 }
