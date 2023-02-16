@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class MoveController : MonoBehaviour
@@ -17,7 +18,10 @@ public class MoveController : MonoBehaviour
     
     [Header("Joystick")] [Space(5)] 
     [SerializeField] private DynamicJoystick joystick;
-
+    
+    [Header("Camera")] [Space(5)] 
+    [SerializeField] private CinemachineVirtualCamera cmCam;
+    
     private Rigidbody rb;
 
     private void Start()
@@ -113,6 +117,16 @@ public class MoveController : MonoBehaviour
     public void Enable(bool temp)
     {
         isEnable = temp;
+        if (!isEnable)
+        {
+            ResetVelocity();
+            cmCam.Priority = 0;
+        }
+        else
+        {
+            cmCam.Priority = 1;
+        }
+           
     }
 
 }

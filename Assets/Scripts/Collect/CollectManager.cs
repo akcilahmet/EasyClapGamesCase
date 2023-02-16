@@ -8,8 +8,6 @@ using UnityEngine;
 
 public class CollectManager : MonoBehaviour
 {
-    [SerializeField] private int score;
-    [SerializeField] private TMP_Text scoreTxt;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("collect"))
@@ -17,8 +15,7 @@ public class CollectManager : MonoBehaviour
             CollectiblesType collectiblesType = other.gameObject.GetComponent<CollectiblesType>();
             if (collectiblesType.type == CollectiblesType.CollectType.cube)
             {
-                StartCoroutine(ScoreUpdate(collectiblesType.score));
-                
+               
                 Destroy(other.gameObject);
 
             } 
@@ -32,9 +29,6 @@ public class CollectManager : MonoBehaviour
             if (collectiblesType.type == CollectiblesType.CollectType.cylinder)
             {
                 ScaleDecrease(collectiblesType.scale);
-               // ScoreUpdate(collectiblesType.score);
-               StartCoroutine(ScoreUpdate(collectiblesType.score));
-                
                 Destroy(other.gameObject);
             }
         }
@@ -52,20 +46,5 @@ public class CollectManager : MonoBehaviour
     }
     
     
-    IEnumerator ScoreUpdate(int addScore)
-    {
-        for (int j = 1; j <= addScore; j++)
-        {
-            score += 1;
-            if (score < 10)
-            {
-                scoreTxt.text = "0" + score.ToString();
-            }
-            else
-            {
-                scoreTxt.text = score.ToString();
-            }
-            yield return new WaitForSeconds(.05f);
-        }
-    }
+  
 }
