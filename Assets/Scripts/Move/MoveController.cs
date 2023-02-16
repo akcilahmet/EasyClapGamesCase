@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
+    private bool isEnable=false;
     [Header("Move")] 
     [SerializeField] private float maxMoveSpeed;
     [SerializeField] private float minMoveSpeed;
@@ -21,16 +22,19 @@ public class MoveController : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        if(rb==null) 
+            rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
+        if (!isEnable) return;
         Rotation(Direction());
     }
 
     private void FixedUpdate()
     {
+        if (!isEnable) return;
         Move();
     }
 
@@ -38,7 +42,7 @@ public class MoveController : MonoBehaviour
 
     void Rotation(Vector3 direction)
     {
-        if (DirectionMagnitude() >= .1f)
+        if (DirectionMagnitude() >= .01f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
@@ -53,10 +57,11 @@ public class MoveController : MonoBehaviour
 
     void Move()
     {
-        if (DirectionMagnitude() >= .1f)
+        if (DirectionMagnitude() >= .2f)
         {
-
-            rb.velocity = Direction() * MoveSmoothSpeed()*Time.deltaTime;
+            Vector3 temp = new Vector3(Direction().x * MoveSmoothSpeed() * Time.deltaTime, rb.velocity.y,
+                Direction().z * MoveSmoothSpeed() * Time.deltaTime);
+            rb.velocity =temp;
 
         }
         if (DirectionMagnitude() < .1f)
@@ -104,6 +109,10 @@ public class MoveController : MonoBehaviour
 
 
     #endregion
-    
+
+    public void Enable(bool temp)
+    {
+        isEnable = temp;
+    }
 
 }

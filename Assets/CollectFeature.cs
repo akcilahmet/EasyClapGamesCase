@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class CollectFeature : MonoBehaviour
 {
-   public float score;
+   public int score;
    public float scale;
 }
